@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>casefase — Mini App</title>
+  <link rel="stylesheet" href="/style.css"/>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="logo">case<span class="accent">fase</span></div>
+      <div id="balanceBtn" class="balance" title="Перейти в профиль">
+        <span id="balanceValue">0</span> <small>⭐</small>
+      </div>
+    </header>
+
+    <main>
+      <!-- MAIN: ТОЛЬКО КЕЙС -->
+      <section id="mainPage" class="page active">
+        <div class="case-wrapper">
+          <div class="case-card">
+            <img id="caseThumb" class="case-thumb" src="https://storage.beee.pro/game_items/25887/a7gXXBIRWJS1wXk5MD6Wy2xhDec6HtJ5hWxTtnY1.webp" alt="case">
+            <div class="case-info">
+              <div class="case-title">Classic Case</div>
+              <div class="case-price">25 ⭐</div>
+              <button id="openCaseBtnMain" class="btn primary">Open</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE: профиль + инвентарь + пополнение -->
+      <section id="profilePage" class="page">
+        <div class="profile card">
+          <img id="avatar" class="avatar" src="" alt="avatar"/>
+          <div class="profile-info">
+            <div id="displayName" class="displayName">User</div>
+            <div id="userId" class="muted">ID: —</div>
+            <div id="totalRecharged" class="muted">Всего пополнено: 0 ⭐</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">Инвентарь</h3>
+          <div id="inventoryList" class="inventory-list"></div>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">Пополнение</h3>
+          <div class="row">
+            <input id="tpAmount" type="number" min="1" placeholder="Сумма (звёзды)"/>
+            <button id="tpCreateBtn" class="btn primary">Пополнить (через бота)</button>
+          </div>
+          <div id="tpStatus" class="muted small" style="margin-top:8px"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button id="btnMain" class="nav-btn active">Main</button>
+      <button id="btnProfile" class="nav-btn">Profile</button>
+    </nav>
+
+    <!-- Modal: открытие кейса (анимация + под ней список дропа) -->
+    <div id="caseModal" class="modal hidden">
+      <div class="modal-card">
+        <button id="closeModal" class="modal-close">✕</button>
+        <h3 id="caseTitle" class="modal-title">Classic Case</h3>
+
+        <div class="carousel-viewport">
+          <div id="carousel" class="carousel"></div>
+        </div>
+
+        <div id="dropList" class="drop-list"></div>
+
+        <div class="modal-footer">
+          <div id="caseCost" class="cost">25 ⭐</div>
+          <button id="openCaseBtn" class="btn primary">Open</button>
+        </div>
+
+        <div id="modalStatus" class="muted small"></div>
+      </div>
+    </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
