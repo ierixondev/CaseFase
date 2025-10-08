@@ -14,7 +14,7 @@
         <div class="logo">case<span class="accent">fase</span></div>
       </div>
 
-      <div id="balanceBtn" class="balance" title="Tap to top up">
+      <div id="balanceBtn" class="balance" title="Нажми для пополнения">
         <span id="balanceValue">0</span> <small class="star">⭐</small>
       </div>
     </header>
@@ -22,12 +22,10 @@
     <main class="main">
       <!-- MAIN -->
       <section id="mainPage" class="page active">
-        <h1 class="h1" id="greeting">Кейсы</h1>
-        <p class="subtitle" id="subtitle">Нажми на кейс, чтобы открыть</p>
+        <h1 id="greeting" class="h1">Кейсы</h1>
+        <p id="subtitle" class="subtitle">Нажми на кейс, чтобы открыть</p>
 
-        <div id="casesGrid" class="cases-grid">
-          <!-- cards injected by JS -->
-        </div>
+        <div id="casesGrid" class="cases-grid"></div>
       </section>
 
       <!-- PROFILE -->
@@ -45,6 +43,15 @@
           <h3 class="section-title">Инвентарь</h3>
           <div id="inventoryList" class="inventory-list"></div>
         </div>
+
+        <div class="card">
+          <h3 class="section-title">Пополнение</h3>
+          <div class="row" style="gap:8px;align-items:center;">
+            <input id="tpAmount" type="number" min="1" placeholder="Сумма (звёзды)" />
+            <button id="tpCreateBtn" class="btn primary small">Пополнить</button>
+          </div>
+          <div id="tpStatus" class="muted small" style="margin-top:10px"></div>
+        </div>
       </section>
     </main>
 
@@ -53,19 +60,19 @@
       <button id="btnProfile" class="nav-btn">Profile</button>
     </nav>
 
-    <!-- CASE MODAL -->
+    <!-- CASE MODAL (фон НЕ прозрачный) -->
     <div id="caseModal" class="modal hidden" aria-hidden="true">
       <div class="modal-card">
         <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
         <h3 id="caseTitle" class="modal-title">Case</h3>
 
+        <!-- ВЕРХ: анимация (каретка) -->
         <div class="carousel-viewport">
           <div id="carousel" class="carousel"></div>
         </div>
 
-        <div class="drop-list" id="dropList">
-          <!-- thumbnails of possible items -->
-        </div>
+        <!-- НИЖЕ: список предметов, которые могут выпасть -->
+        <div id="dropList" class="drop-list"></div>
 
         <div class="modal-footer">
           <div id="caseCost" class="cost">25 ⭐</div>
@@ -73,24 +80,6 @@
         </div>
 
         <div id="modalStatus" class="muted small"></div>
-      </div>
-    </div>
-
-    <!-- TOPUP POPUP -->
-    <div id="topupPopup" class="popup hidden" aria-hidden="true">
-      <div class="popup-card">
-        <h4>Пополнение баланса</h4>
-        <div class="topup-presets">
-          <button class="preset">50</button>
-          <button class="preset">100</button>
-          <button class="preset">250</button>
-        </div>
-        <div class="row" style="margin-top:10px;">
-          <input id="tpAmount" type="number" min="1" placeholder="Сумма (звёзды)" />
-          <button id="tpCreateBtn" class="btn primary small">Пополнить</button>
-        </div>
-        <div id="tpStatus" class="muted small" style="margin-top:8px;"></div>
-        <button id="tpClose" class="btn ghost" style="margin-top:10px;">Отмена</button>
       </div>
     </div>
 
