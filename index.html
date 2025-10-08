@@ -8,72 +8,42 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div id="app" class="app dark">
+  <div id="app" class="app">
     <header class="topbar">
-      <div class="title">casefase</div>
-      <div id="balanceBox" class="balance"><span id="balanceValue">0</span> ⭐</div>
+      <div class="brand">
+        <div class="logo">case<span class="accent">fase</span></div>
+      </div>
+
+      <div id="balanceBtn" class="balance" title="Tap to top up">
+        <span id="balanceValue">0</span> <small class="star">⭐</small>
+      </div>
     </header>
 
     <main class="main">
-      <!-- MAIN PAGE -->
+      <!-- MAIN -->
       <section id="mainPage" class="page active">
-        <h2 id="greeting">Привет!</h2>
-        <p id="subtitle">Открывайте кейсы и собирайте предметы</p>
+        <h1 class="h1" id="greeting">Кейсы</h1>
+        <p class="subtitle" id="subtitle">Нажми на кейс, чтобы открыть</p>
 
-        <div id="casesGrid" class="cases-grid"></div>
-
-        <!-- CASE MODAL -->
-        <div id="caseModal" class="modal hidden" aria-hidden="true">
-          <div class="modal-inner">
-            <button id="closeModal" class="close-btn" aria-label="close">&times;</button>
-            <h3 id="caseTitle">Case</h3>
-
-            <div class="carousel-viewport">
-              <div id="carousel" class="carousel"></div>
-            </div>
-
-            <div class="modal-bottom">
-              <div id="casePrice" class="price">25 ⭐</div>
-              <div style="flex:1"></div>
-              <button id="openCaseBtn" class="btn primary">Open</button>
-            </div>
-
-            <div id="modalStatus" class="status"></div>
-          </div>
+        <div id="casesGrid" class="cases-grid">
+          <!-- cards injected by JS -->
         </div>
       </section>
 
-      <!-- PROFILE PAGE -->
+      <!-- PROFILE -->
       <section id="profilePage" class="page">
-        <div class="profile-card card">
-          <img id="avatar" class="avatar" src="https://via.placeholder.com/96" alt="avatar"/>
+        <div class="profile card">
+          <img id="avatar" class="avatar" src="" alt="avatar" />
           <div class="profile-info">
-            <div id="displayName" class="name">User</div>
-            <div id="metaId" class="meta">ID: —</div>
-            <div id="metaTotal" class="meta">Всего пополнено: 0 ⭐</div>
+            <div id="displayName" class="displayName">User</div>
+            <div id="userId" class="muted">ID: —</div>
+            <div id="totalRecharged" class="muted">Всего пополнено: 0 ⭐</div>
           </div>
         </div>
 
         <div class="card">
-          <h4>Инвентарь</h4>
+          <h3 class="section-title">Инвентарь</h3>
           <div id="inventoryList" class="inventory-list"></div>
-        </div>
-
-        <div class="card settings">
-          <div class="row">
-            <label>Тема</label>
-            <select id="themeSelect">
-              <option value="dark">Тёмная</option>
-              <option value="light">Светлая</option>
-            </select>
-          </div>
-          <div class="row">
-            <label>Язык</label>
-            <select id="langSelect">
-              <option value="ru">RU</option>
-              <option value="en">EN</option>
-            </select>
-          </div>
         </div>
       </section>
     </main>
@@ -83,16 +53,44 @@
       <button id="btnProfile" class="nav-btn">Profile</button>
     </nav>
 
-    <!-- TOPUP POPUP -->
-    <div id="topupPopup" class="mini-popup hidden" aria-hidden="true">
-      <div class="mini-inner">
-        <h4 id="tpTitle">Пополнение</h4>
-        <input id="tpAmount" type="number" min="1" value="50" />
-        <div class="row" style="margin-top:8px">
-          <button id="tpCreateBtn" class="btn primary">Создать инвойс</button>
-          <button id="tpCancelBtn" class="btn">Отмена</button>
+    <!-- CASE MODAL -->
+    <div id="caseModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
+        <h3 id="caseTitle" class="modal-title">Case</h3>
+
+        <div class="carousel-viewport">
+          <div id="carousel" class="carousel"></div>
         </div>
-        <div id="tpStatus" class="status"></div>
+
+        <div class="drop-list" id="dropList">
+          <!-- thumbnails of possible items -->
+        </div>
+
+        <div class="modal-footer">
+          <div id="caseCost" class="cost">25 ⭐</div>
+          <button id="openCaseBtn" class="btn primary">Open</button>
+        </div>
+
+        <div id="modalStatus" class="muted small"></div>
+      </div>
+    </div>
+
+    <!-- TOPUP POPUP -->
+    <div id="topupPopup" class="popup hidden" aria-hidden="true">
+      <div class="popup-card">
+        <h4>Пополнение баланса</h4>
+        <div class="topup-presets">
+          <button class="preset">50</button>
+          <button class="preset">100</button>
+          <button class="preset">250</button>
+        </div>
+        <div class="row" style="margin-top:10px;">
+          <input id="tpAmount" type="number" min="1" placeholder="Сумма (звёзды)" />
+          <button id="tpCreateBtn" class="btn primary small">Пополнить</button>
+        </div>
+        <div id="tpStatus" class="muted small" style="margin-top:8px;"></div>
+        <button id="tpClose" class="btn ghost" style="margin-top:10px;">Отмена</button>
       </div>
     </div>
 
