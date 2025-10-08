@@ -1,42 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>casefase</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>casefase — Mini App</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
   <div id="app" class="app dark">
     <header class="topbar">
       <div class="title">casefase</div>
-      <div class="balance"><span id="balance">0</span> ⭐</div>
+      <div class="balance" id="balanceBox" tabindex="0"> <span id="balanceValue">0</span> ⭐ </div>
     </header>
 
     <main class="main">
-      <section id="page-main" class="page active">
-        <h2 id="hello">Привет!</h2>
-        <div class="card">
-          <label>Количество звёзд</label>
-          <input id="amount" type="number" min="1" value="10">
-          <button id="buy" class="btn">Пополнить</button>
-          <div id="status" class="status"></div>
+      <!-- MAIN: CASES -->
+      <section id="mainPage" class="page active">
+        <h2 id="greeting">Привет!</h2>
+        <p id="subtitle">Открывайте кейсы и собирайте предметы</p>
+
+        <div class="cases-grid" id="casesGrid">
+          <!-- Case cards inserted by JS -->
+        </div>
+
+        <!-- Case modal / opener -->
+        <div id="caseModal" class="modal hidden">
+          <div class="modal-inner">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <h3 id="caseTitle">Case</h3>
+            <div class="carousel-viewport">
+              <div class="carousel" id="carousel">
+                <!-- rotating images -->
+              </div>
+            </div>
+
+            <div class="modal-bottom">
+              <div class="price" id="casePrice">25 ⭐</div>
+              <button id="openCaseBtn" class="btn primary">Open (25 ⭐)</button>
+              <div id="modalStatus" class="status"></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="page-profile" class="page">
-        <div class="card">
-          <p id="profileName">Имя: —</p>
-          <p id="profileId">ID: —</p>
+      <!-- PROFILE -->
+      <section id="profilePage" class="page">
+        <div class="profile-card card">
+          <img id="avatar" class="avatar" src="https://via.placeholder.com/96" alt="avatar"/>
+          <div class="profile-info">
+            <div id="displayName" class="name">User</div>
+            <div class="meta" id="metaId">ID: —</div>
+            <div class="meta" id="metaTotal">Всего пополнено: 0 ⭐</div>
+          </div>
+        </div>
+
+        <div class="card inv-card">
+          <h4>Инвентарь</h4>
+          <div id="inventoryList" class="inventory-list"></div>
+        </div>
+
+        <div class="card settings">
+          <div class="row">
+            <label>Тема</label>
+            <select id="themeSelect">
+              <option value="dark">Тёмная</option>
+              <option value="light">Светлая</option>
+            </select>
+          </div>
+          <div class="row">
+            <label>Язык</label>
+            <select id="langSelect">
+              <option value="ru">RU</option>
+              <option value="en">EN</option>
+            </select>
+          </div>
         </div>
       </section>
     </main>
 
     <nav class="bottom-nav">
-      <button id="tabMain" class="nav-btn active">Main</button>
-      <button id="tabProfile" class="nav-btn">Profile</button>
+      <button id="btnMain" class="nav-btn active">Main</button>
+      <button id="btnProfile" class="nav-btn">Profile</button>
     </nav>
+
+    <!-- TOP-UP INLINE POPUP -->
+    <div id="topupPopup" class="mini-popup hidden">
+      <div class="mini-inner">
+        <h4 id="tpTitle">Пополнение</h4>
+        <input id="tpAmount" type="number" min="1" value="50" />
+        <div class="row">
+          <button id="tpCreateBtn" class="btn primary">Создать инвойс</button>
+          <button id="tpCancelBtn" class="btn">Отмена</button>
+        </div>
+        <div id="tpStatus" class="status"></div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
