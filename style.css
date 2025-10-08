@@ -1,18 +1,47 @@
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-background:#0c0d10;color:#fff;display:flex;justify-content:center}
-.app{max-width:480px;width:100%;padding:16px;display:flex;flex-direction:column;min-height:100vh}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.title{font-weight:700;font-size:18px}
-.balance{background:rgba(255,255,255,0.1);padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-.case{background:rgba(255,255,255,0.05);padding:16px;border-radius:12px;margin-bottom:16px;text-align:center}
-.case-img{width:100%;border-radius:12px;margin-bottom:8px}
-.btn{width:100%;padding:12px;background:#007aff;border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer}
-.bottom-nav{display:flex;gap:8px;margin-top:auto}
-.nav-btn{flex:1;padding:12px;border:none;border-radius:8px;background:rgba(255,255,255,0.05);color:#aaa;font-weight:600}
-.nav-btn.active{background:rgba(255,255,255,0.15);color:#fff}
-.page{display:none}
-.page.active{display:block}
-.status{margin-top:8px;font-size:14px;color:#aaa;text-align:center}
-.profile-card{background:rgba(255,255,255,0.05);padding:16px;border-radius:12px;text-align:center}
-.avatar{width:100px;height:100px;border-radius:50%;margin-bottom:12px;border:2px solid #fff}
-.section-title{text-align:center;margin-bottom:16px}
+:root{
+  --bg-dark:#070708; --panel:rgba(255,255,255,0.03); --text:#fff; --muted:rgba(255,255,255,0.68);
+  --accent:#007aff; --radius:14px; --glass:rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,#020203,#0b0b0c);color:var(--text);-webkit-font-smoothing:antialiased}
+.app{max-width:720px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:18px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.title{font-weight:700;font-size:20px}
+.balance{background:var(--panel);padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.main{flex:1}
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:8px}
+.case-card{background:var(--panel);padding:12px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.case-card img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+.case-card .name{font-weight:700}
+.case-card .info{color:var(--muted);font-size:13px}
+.btn{padding:10px 12px;border-radius:10px;border:none;background:transparent;color:var(--text);font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px rgba(0,122,255,0.15)}
+.card{background:var(--panel);padding:14px;border-radius:14px;margin-bottom:12px}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);z-index:60}
+.hidden{display:none}
+.modal-inner{width:94%;max-width:760px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:16px;position:relative}
+.close-btn{position:absolute;right:12px;top:8px;background:transparent;border:none;color:var(--muted);font-size:26px;cursor:pointer}
+.carousel-viewport{height:140px;overflow:hidden;border-radius:12px;margin-bottom:12px;background:rgba(0,0,0,0.12)}
+.carousel{display:flex;gap:10px;align-items:center;padding:12px;will-change:transform;transform:translateX(0)}
+.carousel img{width:120px;height:120px;border-radius:12px;object-fit:cover;flex:0 0 auto;box-shadow:0 6px 20px rgba(0,0,0,0.4)}
+.modal-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.price{font-weight:800}
+.status{color:var(--muted);font-size:13px;margin-top:8px;text-align:center}
+.bottom-nav{display:flex;gap:8px;margin-top:16px}
+.nav-btn{flex:1;padding:12px;border-radius:10px;border:none;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:700}
+.nav-btn.active{background:rgba(255,255,255,0.04);color:var(--text)}
+.profile-card{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.avatar{width:96px;height:96px;border-radius:16px;object-fit:cover}
+.inventory-list{display:flex;flex-wrap:wrap;gap:10px}
+.inv-item{width:100px;background:rgba(255,255,255,0.03);padding:8px;border-radius:12px;text-align:center}
+.inv-item img{width:80px;height:80px;border-radius:10px;object-fit:cover}
+.row{display:flex;gap:10px;align-items:center}
+.settings select,input{width:100%;padding:8px;border-radius:8px;border:none;background:rgba(255,255,255,0.02);color:var(--text)}
+.mini-popup{position:fixed;right:12px;bottom:80px;background:var(--panel);padding:12px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.6);z-index:70}
+.mini-popup input{width:140px;padding:8px;border-radius:8px;border:none;background:rgba(255,255,255,0.02);color:var(--text)}
+@media (max-width:420px){
+  .carousel img{width:96px;height:96px}
+  .case-card img{height:120px}
+}
+.app.light{background:linear-gradient(180deg,#f7f8fa,#ffffff);color:#111}
+.app.light .case-card,.app.light .card,.app.light .modal-inner{background:rgba(0,0,0,0.04)}
