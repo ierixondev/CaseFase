@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>casefase — Mini App</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="logo">case<span class="accent">fase</span></div>
+      <div id="balanceBtn" class="balance" title="Пополнить">
+        <span id="balanceValue">0</span> <small>⭐</small>
+      </div>
+    </header>
+
+    <main>
+      <!-- MAIN: только кейсы -->
+      <section id="mainPage" class="page active">
+        <h1 class="title">Кейсы</h1>
+        <p class="subtitle">Только кейсы — открой, чтобы получить предмет</p>
+        <div id="casesGrid" class="cases-grid"></div>
+      </section>
+
+      <!-- PROFILE: профиль, инвентарь, пополнение -->
+      <section id="profilePage" class="page">
+        <div class="profile card">
+          <img id="avatar" class="avatar" src="" alt="avatar"/>
+          <div class="profile-info">
+            <div id="displayName" class="displayName">User</div>
+            <div id="userId" class="muted">ID: —</div>
+            <div id="totalRecharged" class="muted">Всего пополнено: 0 ⭐</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Инвентарь</h3>
+          <div id="inventoryList" class="inventory-list"></div>
+        </div>
+
+        <div class="card">
+          <h3>Пополнение</h3>
+          <div class="row">
+            <input id="tpAmount" type="number" min="1" placeholder="Сумма (звёзды)" />
+            <button id="tpCreateBtn" class="btn primary">Пополнить</button>
+          </div>
+          <div id="tpStatus" class="muted small"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button id="btnMain" class="nav-btn active">Main</button>
+      <button id="btnProfile" class="nav-btn">Profile</button>
+    </nav>
+
+    <!-- CASE MODAL -->
+    <div id="caseModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <button id="closeModal" class="modal-close">✕</button>
+        <h3 id="caseTitle" class="modal-title">Case</h3>
+
+        <div class="carousel-viewport">
+          <div id="carousel" class="carousel"></div>
+        </div>
+
+        <!-- разделение: отдельно показываем, что может выпасть -->
+        <div id="dropList" class="drop-list"></div>
+
+        <div class="modal-footer">
+          <div id="caseCost" class="cost">25 ⭐</div>
+          <button id="openCaseBtn" class="btn primary">Открыть</button>
+        </div>
+
+        <div id="modalStatus" class="muted small"></div>
+      </div>
+    </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
