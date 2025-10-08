@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>casefase</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div id="app" class="app dark">
+    <header class="topbar">
+      <div class="title">casefase</div>
+      <div class="balance"><span id="balance">0</span> ⭐</div>
+    </header>
+
+    <main class="main">
+      <section id="page-main" class="page active">
+        <h2 id="hello">Привет!</h2>
+        <div class="card">
+          <label>Количество звёзд</label>
+          <input id="amount" type="number" min="1" value="10">
+          <button id="buy" class="btn">Пополнить</button>
+          <div id="status" class="status"></div>
+        </div>
+      </section>
+
+      <section id="page-profile" class="page">
+        <div class="card">
+          <p id="profileName">Имя: —</p>
+          <p id="profileId">ID: —</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button id="tabMain" class="nav-btn active">Main</button>
+      <button id="tabProfile" class="nav-btn">Profile</button>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
